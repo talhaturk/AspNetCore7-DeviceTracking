@@ -1,0 +1,14 @@
+﻿@model IEnumerable<UserDevices>
+
+<div class="col-md-4">
+
+</div>
+
+<div class="col-md-8">
+    <div class="row">
+        @foreach (var userDevices in @Model)
+        {
+            <partial name="_DeviceCard" model=userDevices/>    
+        }
+    </div>
+</div>
