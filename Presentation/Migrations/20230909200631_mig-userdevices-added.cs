@@ -7,7 +7,7 @@
 namespace Presentation.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_UserDevices_Added : Migration
+    public partial class miguserdevicesadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

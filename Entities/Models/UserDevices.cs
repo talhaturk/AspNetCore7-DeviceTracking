@@ -11,11 +11,11 @@ namespace Entities.Models
 
         [ForeignKey("DeviceId")]
         public int DeviceId { get; set; } // FKey
-        public Device Device { get; set; }
+        public Device? Device { get; set; }
 
         [ForeignKey("AppUserId")]
         public int AppUserId { get; set; } //FKey
-        public AppUser AppUser { get; set; }
+        public AppUser? AppUser { get; set; }
 
     }
 }

@@ -1,0 +1,40 @@
+﻿@model UserDevices
+
+<div class="text-center">
+    <div class="display-6">Create</div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="form-group my-3">
+        <label asp-for="DeviceId">Device</label>
+        <select asp-for="DeviceId"
+                class="form-control"
+                asp-items="@ViewBag.Devices"
+                asp-for="DeviceId"></select>
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="AppUserId">User</label>
+        <select asp-for="AppUserId"
+                class="form-control"
+                asp-items="@ViewBag.Users"
+                asp-for="AppUserId"></select>
+    </div>
+
+
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Devices
+            </a>
+        </div>
+    </div>
+</form>

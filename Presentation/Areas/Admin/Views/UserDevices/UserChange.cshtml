@@ -1,0 +1,35 @@
+﻿@model UserDevices
+
+<div class="text-center">
+    <div class="display-6">User Change</div>
+</div>
+
+<form method="post" asp-action="UserChange" enctype="multipart/form-data">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="UserDevicesId">
+    <input type="hidden" asp-for="DeviceId">
+
+
+    <div class="form-group my-3">
+        <label asp-for="AppUserId">User</label>
+        <select asp-for="AppUserId"
+                class="form-control"
+                asp-items="@ViewBag.Users"
+                asp-for="AppUserId"></select>
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Devices
+            </a>
+        </div>
+    </div>
+</form>

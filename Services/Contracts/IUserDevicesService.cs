@@ -16,5 +16,6 @@ namespace Services.Contracts
         void UpdateOneDevice(UserDevices userDevices);
         void DeleteOneDevice(int id);
         UserDevices GetOneDeviceForUpdate(int id, bool trackChanges);
+
     }
 }

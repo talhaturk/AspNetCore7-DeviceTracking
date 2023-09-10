@@ -3,15 +3,11 @@
 <div class="col-sm-12 col-md-4 my-2">
     <div class="card" style="width: 18rem;">
         <div class="card-header text-center">
-            @Model.Device.DeviceName
+            @Model?.Device.DeviceName
         </div>
-        <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+        <img src="@Model?.Device.ImageUrl" class="card-img-top" alt="...">
         <div class="card-body">
-            <div class="card-text">
-                
-            </div>
-            <p class="card-text">User: @Model.AppUser.Name</p>
-
+            <p class="card-text">User: @Model?.AppUser.Name</p>
         </div>
     </div>
 </div>

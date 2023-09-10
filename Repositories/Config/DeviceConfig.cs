@@ -14,9 +14,9 @@ namespace Repositories.Config
         public void Configure(EntityTypeBuilder<Device> builder)
         {
             builder.HasData(
-                new Device() { DeviceId = 1, DeviceName = "Computer" },
-                new Device() { DeviceId = 2, DeviceName = "Monitor" },
-                new Device() { DeviceId = 3, DeviceName = "Mouse" });
+                new Device() { DeviceId = 1, DeviceName = "Computer", ImageUrl = "/images/device/computer.jpg" },
+                new Device() { DeviceId = 2, DeviceName = "Monitor", ImageUrl = "/images/device/monitor.jpg" },
+                new Device() { DeviceId = 3, DeviceName = "Mouse", ImageUrl = "/images/device/mouse.jpg" });
         }
     }
 }

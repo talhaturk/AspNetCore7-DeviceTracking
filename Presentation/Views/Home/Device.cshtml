@@ -6,9 +6,9 @@
 
 <div class="col-md-8">
     <div class="row">
-        @foreach (var userDevices in @Model)
+        @foreach (UserDevices userDevices in @Model)
         {
-            <partial name="_DeviceCard" model=userDevices/>    
+            <partial name="_DeviceCard" model=@userDevices/>    
         }
     </div>
 </div>

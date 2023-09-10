@@ -28,6 +28,8 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\device\" />
+    <Folder Include="wwwroot\images\user\" />
   </ItemGroup>
 
 </Project>

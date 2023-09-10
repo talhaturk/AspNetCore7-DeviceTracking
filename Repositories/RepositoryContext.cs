@@ -23,15 +23,7 @@ namespace Repositories
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<UserDevices>()
-            //.HasOne(ud => ud.AppUser)
-            //.WithMany()
-            //.HasForeignKey(ud => ud.AppUserId);
 
-            //builder.Entity<UserDevices>()
-            //    .HasOne(ud => ud.Device)
-            //    .WithMany()
-            //    .HasForeignKey(ud => ud.DeviceId);
 
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

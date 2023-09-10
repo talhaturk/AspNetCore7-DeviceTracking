@@ -1,0 +1,41 @@
+﻿@model DeviceDtoForUpdate
+
+<div class="text-center">
+    <div class="display-6">Update</div>
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="DeviceId">
+
+
+    <div class="form-group my-3">
+        <label asp-for="DeviceName"></label>
+        <input asp-for="DeviceName" class="form-control" />
+    </div>
+
+
+    <div class="form-group my-3">
+        <img class="rounded shadow" width="150" src="@Model?.ImageUrl" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ImageUrl"></label>
+        <input name="file" type="file" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Update
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Devices
+            </a>
+        </div>
+    </div>
+</form>

@@ -8,7 +8,8 @@ namespace Entities.Dtos
 {
     public record DeviceDto
     {
-        public int DeviceID { get; set; }
+        public int DeviceId { get; set; }
         public String? DeviceName { get; set; } = String.Empty;
+        public String? ImageUrl { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Entities.Models
     {
         public String? Name { get; set; } = String.Empty;
         public String Surname { get; set; } = String.Empty;
+        public String? ImageUrl { get; set; }
 
         public List<UserDevices> UserDevices { get; set; }
     }

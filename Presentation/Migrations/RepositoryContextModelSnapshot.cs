@@ -93,6 +93,9 @@ namespace Presentation.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
@@ -156,6 +159,9 @@ namespace Presentation.Migrations
                     b.Property<string>("DeviceName")
                         .HasColumnType("text");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.HasKey("DeviceId");
 
                     b.ToTable("Devices");
@@ -164,17 +170,20 @@ namespace Presentation.Migrations
                         new
                         {
                             DeviceId = 1,
-                            DeviceName = "Computer"
+                            DeviceName = "Computer",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\computer.jpg"
                         },
                         new
                         {
                             DeviceId = 2,
-                            DeviceName = "Monitor"
+                            DeviceName = "Monitor",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\monitor.jpg"
                         },
                         new
                         {
                             DeviceId = 3,
-                            DeviceName = "Mouse"
+                            DeviceName = "Mouse",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\mouse.jpg"
                         });
                 });
 

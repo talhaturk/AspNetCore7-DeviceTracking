@@ -30,6 +30,7 @@ namespace Presentation.Infrastructure.Extensions
                     UserName = "admin",
                     Email = "info@admin.com",
                     PhoneNumber = "5557593546",
+                    ImageUrl = "/images/user/talhaturk.jpg"
                 };
 
                 var result = await userManager.CreateAsync(user, "admin123");
@@ -71,6 +72,7 @@ namespace Presentation.Infrastructure.Extensions
                     UserName = "editor",
                     Email = "info@editor.com",
                     PhoneNumber = "5557593545",
+                    ImageUrl = "/images/user/johnsilver.jpg"
                 };
 
                 var result = await userManager.CreateAsync(user, "editor123");
@@ -107,6 +109,7 @@ namespace Presentation.Infrastructure.Extensions
                     UserName = "user",
                     Email = "info@user.com",
                     PhoneNumber = "5557593544",
+                    ImageUrl = "/images/user/alanturing.jpg"
                 };
 
                 var result = await userManager.CreateAsync(user, "user123");

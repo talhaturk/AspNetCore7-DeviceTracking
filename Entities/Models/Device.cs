@@ -11,5 +11,6 @@ namespace Entities.Models
         public int DeviceId { get; set; }
         public String? DeviceName { get; set; } = String.Empty;
         public List<UserDevices> UserDevices { get; set; }
+        public String? ImageUrl { get; set; }
     }
 }

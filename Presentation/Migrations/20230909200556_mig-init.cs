@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Presentation.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_init : Migration
+    public partial class miginit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +37,7 @@ namespace Presentation.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Surname = table.Column<string>(type: "text", nullable: false),
+                    ImageUrl = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -63,7 +64,8 @@ namespace Presentation.Migrations
                 {
                     DeviceId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DeviceName = table.Column<string>(type: "text", nullable: true)
+                    DeviceName = table.Column<string>(type: "text", nullable: true),
+                    ImageUrl = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -214,12 +216,12 @@ namespace Presentation.Migrations
 
             migrationBuilder.InsertData(
                 table: "Devices",
-                columns: new[] { "DeviceId", "DeviceName" },
+                columns: new[] { "DeviceId", "DeviceName", "ImageUrl" },
                 values: new object[,]
                 {
-                    { 1, "Computer" },
-                    { 2, "Monitor" },
-                    { 3, "Mouse" }
+                    { 1, "Computer", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\computer.jpg" },
+                    { 2, "Monitor", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\monitor.jpg" },
+                    { 3, "Mouse", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\mouse.jpg" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -1,5 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AppUser
+<div class="container">
+    <div class="display-6 text-center mt-3">
+        Welcome Admin
+    </div>
+
+    <div class="card mt-3 mx-auto" style="width: 25rem;">
+        <div class="card-header text-center">
+            @Model?.Name @Model?.Surname
+        </div>
+        <img src="@Model?.ImageUrl" class="card-img-top img-thumbnail" alt="...">
+        <div class="card-body">
+            <p class="card-text">
+                <i class="fa-solid fa-envelope"></i>
+                Email: @Model?.Email
+            </p>
+            <p class="card-text">
+                <i class="fa-solid fa-phone"></i>
+                Phone: @Model?.PhoneNumber
+            </p>
+        </div>
+    </div>
+
+</div>

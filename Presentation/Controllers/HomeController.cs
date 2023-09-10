@@ -6,6 +6,7 @@ using Services.Contracts;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Presentation.Controllers
 {
@@ -37,13 +38,14 @@ namespace Presentation.Controllers
             return View();
         }
 
-        [HttpGet]
+        [Authorize(Roles =("Admin"))]
         public async Task<IActionResult> Device()
         {
             AppUser user = await _userManager.GetUserAsync(User);
             var devices = _serviceManager.UserDevicesService.GetAllDevices(false)
                 .Where(d => d.AppUserId.Equals(user.Id))
                 .AsQueryable();
+
             //var devices = _serviceManager.DeviceService.GetAllDevices(false);
             
 

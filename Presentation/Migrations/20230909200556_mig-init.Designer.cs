@@ -12,8 +12,8 @@ using Repositories;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230909150739_mig_init")]
-    partial class mig_init
+    [Migration("20230909200556_mig-init")]
+    partial class miginit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,9 @@ namespace Presentation.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
@@ -159,6 +162,9 @@ namespace Presentation.Migrations
                     b.Property<string>("DeviceName")
                         .HasColumnType("text");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.HasKey("DeviceId");
 
                     b.ToTable("Devices");
@@ -167,17 +173,20 @@ namespace Presentation.Migrations
                         new
                         {
                             DeviceId = 1,
-                            DeviceName = "Computer"
+                            DeviceName = "Computer",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\computer.jpg"
                         },
                         new
                         {
                             DeviceId = 2,
-                            DeviceName = "Monitor"
+                            DeviceName = "Monitor",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\monitor.jpg"
                         },
                         new
                         {
                             DeviceId = 3,
-                            DeviceName = "Mouse"
+                            DeviceName = "Mouse",
+                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\mouse.jpg"
                         });
                 });
 
