@@ -1,44 +1,94 @@
 ﻿﻿@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <li class="nav-item">
+        <a class="btn nav-link active" onclick="getAdminSite(event)">Admin</a>
+    </li>
+
+    @* <li class="nav-item">
         <a class="nav-link active"
            aria-current="page"
            asp-area="Admin"
            asp-controller="Dashboard"
            asp-action="Index">Admin</a>
-    </li>
+    </li> *@
 }
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Editor"))
 {
     <li class="nav-item">
+        <a class="btn nav-link active" onclick="getEditorSite(event)">Editor</a>
+    </li>
+
+    @* <li class="nav-item">
         <a class="nav-link active"
            aria-current="page"
            asp-area="Editor"
            asp-controller="Dashboard"
            asp-action="Index">Editor</a>
-    </li>
+    </li> *@
 }
 
 @if (User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
+        <a class="btn nav-link active" onclick="logout(event)">Logout</a>
+    </li>
+    
+    @* <li class="nav-item">
         <a class="nav-link active"
            aria-current="page"
            asp-area=""
            asp-controller="Account"
-           asp-route-returnUrl="@Context.Request.PathAndQuery()"
            asp-action="Logout">Logout</a>
-    </li>
+    </li> *@
 }
-else
-{
-    <li class="nav-item">
-        <a class="nav-link active"
-           aria-current="page"
-           asp-area=""
-           asp-controller="Account"
-           asp-route-returnUrl="@Context.Request.PathAndQuery()"
-           asp-action="Login">Login</a>
-    </li>
-}
+
+
+<script type="text/javascript">
+
+    function getAdminSite(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/dashboard/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/dashboard/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getEditorSite(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/editor/dashboard/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/editor/dashboard/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function logout(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/account/logout',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/account/login';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>

@@ -24,22 +24,23 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromForm] UserForAutheticationDto userForAutheticationDto)
+        public async Task<IActionResult> Login([FromBody] UserForAutheticationDto model)
         {
             if (ModelState.IsValid)
             {
-                AppUser user = await _userManager.FindByNameAsync(userForAutheticationDto.UserName);
+                AppUser user = await _userManager.FindByNameAsync(model.UserName);
                 if (user is not null)
                 {
                     await _signInManager.SignOutAsync();
-                    var signResult = await _signInManager.PasswordSignInAsync(user, userForAutheticationDto.Password, false, false);
+                    var signResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
                     if (signResult.Succeeded)
                     {
                         //return Redirect(userForAutheticationDto?.ReturnUrl ?? "/");
                         return RedirectToAction("Index", "Home");
                     }
+                    return BadRequest(new { message = "Wrong password or user name" });
                 }
-                ModelState.AddModelError("Error", "Invalid username or password.");
+                return BadRequest(new { message = "Invalid login information." });
             }
             return View();
         }

@@ -25,6 +25,7 @@ namespace Presentation.Controllers
             _serviceManager = serviceManager;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -38,7 +39,7 @@ namespace Presentation.Controllers
             return View();
         }
 
-        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> Device()
         {
             AppUser user = await _userManager.GetUserAsync(User);

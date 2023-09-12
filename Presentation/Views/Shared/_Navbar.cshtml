@@ -9,32 +9,54 @@
             <ul class="navbar-nav flex-grow-1">
 
                 <li class="nav-item">
+                    <a class="btn nav-link active" onclick="getHome(event)">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn nav-link active" onclick="getDevices(event)">Devices</a>
+                </li>
+
+                <script type="text/javascript">
+
+                    function getHome(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'https://localhost:7107/home/index',
+                            success: function () {
+
+                                window.location.href = 'https://localhost:7107/home/index';
+                            },
+                            error: function (error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                    
+                    function getDevices(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'https://localhost:7107/home/device',
+                            success: function () {
+                                
+                                window.location.href = 'https://localhost:7107/home/device';
+                            },
+                            error: function (error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+
+                </script>
+                
+                @* <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Device">My Devices</a>
-                </li>
-
-
-                @* <script type="text/javascript">
-
-                    function getDevices(event) {
-                        window.location.href = '/Home/Device';
-                        // event.preventDefault();
-                        // $.ajax({
-                        //     url: 'Home/Device',
-                        //     type: 'GET',
-                        //     success: function (data) {
-                        //         window.location.href = '/Home/Device';
-                        //     },
-                        //     error: function (error) {
-                        //         console.error(error);
-                        //     }
-                        // });
-                    }
-
-                </script> *@
+                </li> *@
 
             </ul>
 

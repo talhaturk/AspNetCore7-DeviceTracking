@@ -1,6 +1,4 @@
-﻿@model UserForAutheticationDto
-
-<div class="text-center my-5">
+﻿<div class="text-center my-5">
 
     <h6 class="display-6">
         <i class="fa-solid text-white fa-right-to-bracket bg-secondary p-3 rounded-5"></i>
@@ -13,6 +11,77 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
         
+        <form method="Post">
+
+            <div class="text-center">
+                <div class="text-danger" asp-validation-summary="All"></div>
+            </div>
+
+            <div class="form-group my-3">
+                <label>Username</label>
+                <input id="UserName" class="form-control" />
+            </div>
+
+            <div class="form-group my-3">
+                <label>Password</label>
+                <input type="password" id="Password" class="form-control" />
+            </div>
+
+            <div id="error-message" class="text-danger my-3 d-flex justify-content-center"></div>
+
+            <div class="form-group my-3 d-flex justify-content-center">
+                <button onclick="login(event)" class="btn btn-primary">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </button>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<script type="text/javascript">
+    function login() {
+        var UserName = $('#UserName').val();
+        var Password = $('#Password').val();
+
+        event.preventDefault();
+
+        var model = {
+            UserName: UserName,
+            Password: Password
+        };
+
+        if ($('#UserName').val() == "" || $('#Password').val() == "") {
+            $("#error-message").text("Error: Please fill the lines.");
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'https://localhost:7107/account/login',
+                data: JSON.stringify(model),
+                contentType: "application/json",
+                success: function (response) {
+                    console.log("Giriş başarılı: " + response);
+                    $("#error-message").text("");
+                    window.location.href = "https://localhost:7107/home/index";
+                },
+                error: function (error) {
+                    console.log("Giriş hatası: " + error.responseText);
+                    $("#error-message").text("Error: " + error.responseJSON.message);
+                }
+            });
+        }
+
+    }
+</script>
+
+
+
+@* <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
         <form method="post" asp-action="Login">
 
             <div class="text-center">
@@ -41,4 +110,4 @@
 
     </div>
     <div class="col-md-3"></div>
-</div>
+</div> *@
