@@ -10,6 +10,7 @@ namespace Presentation.Infrastructure.Mapper
         {
             CreateMap<DeviceDtoForInsertion, Device>();
             CreateMap<DeviceDtoForUpdate, Device>().ReverseMap();
+            CreateMap<RegisterDto, AppUser>();
         }
     }
 }

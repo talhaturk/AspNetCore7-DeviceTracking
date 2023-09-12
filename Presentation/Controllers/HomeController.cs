@@ -38,7 +38,7 @@ namespace Presentation.Controllers
             return View();
         }
 
-        [Authorize(Roles =("Admin"))]
+        [Authorize]
         public async Task<IActionResult> Device()
         {
             AppUser user = await _userManager.GetUserAsync(User);

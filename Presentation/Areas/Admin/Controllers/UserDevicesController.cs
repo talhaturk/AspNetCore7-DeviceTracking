@@ -43,6 +43,7 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 _serviceManager.UserDevicesService.CreateOneDevice(userDevices);
                 return RedirectToAction("Index");
+
             }
             return View();
         }
@@ -80,7 +81,26 @@ namespace Presentation.Areas.Admin.Controllers
 
         private SelectList GetDevicesSelectList()
         {
-            return new SelectList(_serviceManager.DeviceService.GetAllDevices(false), "DeviceId", "DeviceName", 1);
+            // UserDevices tablosundaki Device nesnelerinin id listesi
+            var idList = _serviceManager.UserDevicesService.GetAllDevices(false).Select(d => d.DeviceId).ToList();
+
+            // UserDevices tablosunda olmayan Device nesnelerini SelectList'e alma
+            var deviceList = new SelectList(
+                _serviceManager
+                .DeviceService
+                .GetAllDevices(false)
+                .Where(d => !idList.Contains(d.DeviceId))
+                , "DeviceId"
+                , "DeviceName"
+                , 1);
+
+            if (deviceList == null || !deviceList.Any())
+            {
+                ModelState.AddModelError("deviceList", "Device list is empty.");
+            }
+
+            
+            return deviceList;
         }
     }
 }

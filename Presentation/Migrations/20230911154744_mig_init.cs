@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Presentation.Migrations
 {
     /// <inheritdoc />
-    public partial class miginit : Migration
+    public partial class mig_init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,7 @@ namespace Presentation.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    Surname = table.Column<string>(type: "text", nullable: false),
+                    Surname = table.Column<string>(type: "text", nullable: true),
                     ImageUrl = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -219,9 +219,9 @@ namespace Presentation.Migrations
                 columns: new[] { "DeviceId", "DeviceName", "ImageUrl" },
                 values: new object[,]
                 {
-                    { 1, "Computer", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\computer.jpg" },
-                    { 2, "Monitor", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\monitor.jpg" },
-                    { 3, "Mouse", "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\mouse.jpg" }
+                    { 1, "Computer", "/images/device/computer.jpg" },
+                    { 2, "Monitor", "/images/device/monitor.jpg" },
+                    { 3, "Mouse", "/images/device/mouse.jpg" }
                 });
 
             migrationBuilder.CreateIndex(

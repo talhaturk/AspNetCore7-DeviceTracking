@@ -50,5 +50,10 @@ namespace Presentation.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AccessDenied([FromQuery(Name = "ReturnUrl")] string returnUrl)
+        {
+            return View();
+        }
     }
 }

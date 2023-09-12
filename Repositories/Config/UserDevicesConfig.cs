@@ -9,11 +9,13 @@ namespace Repositories.Config
     {
         public void Configure(EntityTypeBuilder<UserDevices> builder)
         {
-            builder.HasData(
-                new UserDevices() { UserDevicesId = 1, AppUserId = 1, DeviceId = 1 },
-                new UserDevices() { UserDevicesId = 2, AppUserId = 2, DeviceId = 2 },
-                new UserDevices() { UserDevicesId = 3, AppUserId = 3, DeviceId = 3 }
-            );
+            //Statik kullanıcılar oluşmadan kullanılırsa hata verir!
+            
+            //builder.HasData(
+            //    new UserDevices() { UserDevicesId = 1, AppUserId = 1, DeviceId = 1 },
+            //    new UserDevices() { UserDevicesId = 2, AppUserId = 2, DeviceId = 2 },
+            //    new UserDevices() { UserDevicesId = 3, AppUserId = 3, DeviceId = 3 }
+            //);
         }
     }
 }

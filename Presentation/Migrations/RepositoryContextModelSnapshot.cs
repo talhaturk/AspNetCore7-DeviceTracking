@@ -126,7 +126,6 @@ namespace Presentation.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -171,19 +170,19 @@ namespace Presentation.Migrations
                         {
                             DeviceId = 1,
                             DeviceName = "Computer",
-                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\computer.jpg"
+                            ImageUrl = "/images/device/computer.jpg"
                         },
                         new
                         {
                             DeviceId = 2,
                             DeviceName = "Monitor",
-                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\monitor.jpg"
+                            ImageUrl = "/images/device/monitor.jpg"
                         },
                         new
                         {
                             DeviceId = 3,
                             DeviceName = "Mouse",
-                            ImageUrl = "C:\\Users\\talha\\OneDrive\\Masaüstü\\Proje\\DeviceTracking\\Presentation\\wwwroot\\images\\device\\mouse.jpg"
+                            ImageUrl = "/images/device/mouse.jpg"
                         });
                 });
 
@@ -208,26 +207,6 @@ namespace Presentation.Migrations
                     b.HasIndex("DeviceId");
 
                     b.ToTable("UserDevices");
-
-                    b.HasData(
-                        new
-                        {
-                            UserDevicesId = 1,
-                            AppUserId = 1,
-                            DeviceId = 1
-                        },
-                        new
-                        {
-                            UserDevicesId = 2,
-                            AppUserId = 2,
-                            DeviceId = 2
-                        },
-                        new
-                        {
-                            UserDevicesId = 3,
-                            AppUserId = 3,
-                            DeviceId = 3
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

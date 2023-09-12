@@ -27,10 +27,14 @@
 
     <div class="form-group my-3">
         <div class="btn-group">
-            <button class="btn btn-primary" type="submit">
-                <i class="fa fa-save"></i>
-                Save
-            </button>
+            @if (ViewBag.Devices != null && ViewBag.Devices is SelectList && ((SelectList)ViewBag.Devices).Any())
+            {
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+            }
+            
             <a asp-action="Index" class="btn btn-outline-primary">
                 <i class="fa fa-list"></i>
                 Devices

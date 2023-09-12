@@ -10,7 +10,8 @@ namespace Entities.Models
     public class AppUser : IdentityUser<int>
     {
         public String? Name { get; set; } = String.Empty;
-        public String Surname { get; set; } = String.Empty;
+        public String? Surname { get; set; } = String.Empty;
+        public String? FullName => String.Concat(Name, " ", Surname);
         public String? ImageUrl { get; set; }
 
         public List<UserDevices> UserDevices { get; set; }
