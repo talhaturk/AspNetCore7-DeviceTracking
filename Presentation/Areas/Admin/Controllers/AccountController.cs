@@ -14,7 +14,6 @@ namespace Presentation.Areas.Admin.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
-        private readonly IMapper _mapper;
 
         public AccountController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
