@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Device>
+
+<div class="text-center">
+    <div class="display-6 mt-3">Devices</div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Device Name</th>
+                <th>Image Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Device dvc in Model)
+            {
+                <tr>
+                    <td>@dvc?.DeviceId</td>
+                    <td>
+                        <img class="border border-light img-thumbnail rounded" src="@dvc?.ImageUrl" alt="@dvc?.DeviceName" width="50">
+                    </td>
+                    <td>@dvc?.DeviceName</td>
+                    <td>@dvc?.ImageUrl</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
