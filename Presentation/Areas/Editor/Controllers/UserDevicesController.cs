@@ -36,7 +36,7 @@ namespace Presentation.Areas.Editor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] UserDevices userDevices)
+        public IActionResult Create([FromBody] UserDevices userDevices)
         {
             if (ModelState.IsValid)
             {
@@ -46,6 +46,7 @@ namespace Presentation.Areas.Editor.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult UserChange([FromRoute(Name = "id")] int id)
         {
             ViewBag.Users = GetUsersSelectList();
@@ -55,7 +56,7 @@ namespace Presentation.Areas.Editor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UserChange(UserDevices userDevices)
+        public IActionResult UserChange([FromBody] UserDevices userDevices)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +67,7 @@ namespace Presentation.Areas.Editor.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete([FromRoute(Name = "id")] int id)
+        public IActionResult Delete([FromRoute] int id)
         {
             _serviceManager.UserDevicesService.DeleteOneDevice(id);
             return RedirectToAction("Index");

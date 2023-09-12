@@ -1,4 +1,110 @@
-﻿@model UserDevices
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+
+<div class="text-center">
+    <div class="display-6">Create</div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="form-group my-3">
+        <label for="DeviceId">Device</label>
+        <select id="DeviceId" name="DeviceId" class="form-control">
+            @foreach (var device in ViewBag.Devices)
+            {
+                <option value="@device.Value">@device.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group my-3">
+        <label for="AppUserId">User</label>
+        <select id="AppUserId" name="AppUserId" class="form-control">
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <a onclick="createUserDevices(event)" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+                Create
+            </a>
+            <a onclick="getUserDevices(event)" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                User Devices
+            </a>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+    function createUserDevices(event) {
+        event.preventDefault();
+
+        debugger;
+        var formData = {
+            DeviceId: $('#DeviceId').val(),
+            AppUserId: $('#AppUserId').val()
+        };
+
+        // POST isteği gönder
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:7107/editor/userdevices/create',
+            headers: { "RequestVerificationToken": "@GetAntiXsrfRequestToken()" },
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (result) {
+                console.log("basarili");
+                window.location.href = "https://localhost:7107/editor/userdevices/index"
+            },
+            error: function (error) {
+
+                console.log(error);
+            }
+        });
+    }
+
+    function getUserDevices(event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: 'https://localhost:7107/editor/userdevices/index',
+            type: 'GET',
+            success: function (result) {
+
+                window.location.href = "https://localhost:7107/editor/userdevices/index"
+            },
+            error: function (error) {
+
+                console.log(error);
+            }
+        });
+    }
+
+</script>
+
+
+
+
+
+
+@* @model UserDevices
 
 <div class="text-center">
     <div class="display-6">Create</div>
@@ -37,4 +143,4 @@
             </a>
         </div>
     </div>
-</form>
+</form> *@

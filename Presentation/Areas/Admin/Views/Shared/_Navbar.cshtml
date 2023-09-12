@@ -9,6 +9,22 @@
             <ul class="navbar-nav flex-grow-1">
 
                 <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="getDashboard(event)">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="getAccounts(event)">Accounts</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="getDevices(event)">Devices</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="getUserDevices(event)">User Devices</a>
+                </li>
+                
+                @* <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
                 </li>
 
@@ -22,22 +38,126 @@
 
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" asp-area="Admin" asp-controller="UserDevices" asp-action="Index">User Devices</a>
-                </li>
+                </li> *@
 
             </ul>
 
             <ul class="navbar-nav">
 
                 <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="getHome(event)">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn nav-link active text-white" onclick="logout(event)">Logout</a>
+                </li>
+
+                @* <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                </li>
+                </li> *@
 
             </ul>
         </div>
     </div>
 </nav>
+
+<script type="text/javascript">
+
+    function getDashboard(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/dashboard/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/dashboard/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getAccounts(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/account/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/account/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getDevices(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/devices/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/devices/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getUserDevices(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/userdevices/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/userdevices/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getHome(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/home/index',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/home/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function logout(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/account/logout',
+            success: function () {
+ 
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+        window.location.href = 'https://localhost:7107/account/login';
+    }
+
+</script>
+
+
 

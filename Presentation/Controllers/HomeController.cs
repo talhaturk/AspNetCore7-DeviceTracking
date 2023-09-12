@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Repositories;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+
 
 namespace Presentation.Controllers
 {

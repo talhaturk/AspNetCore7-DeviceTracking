@@ -45,6 +45,7 @@ namespace Presentation.Controllers
             return View();
         }
 
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Logout()
         {

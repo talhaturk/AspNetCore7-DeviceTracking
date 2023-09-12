@@ -33,17 +33,29 @@
                     <td>@dvc?.Device?.DeviceName</td>
                     <td>
                         @dvc?.AppUser?.Name @dvc?.AppUser?.Surname
-                        <a asp-action="UserChange" asp-route-id="@dvc?.UserDevicesId" class="btn btn-warning">
+
+                        <a onclick="getOneUserDevices(event, @dvc?.UserDevicesId)" class="btn btn-warning">
                             <i class="fa fa-rotate"></i>
                             Change User
                         </a>
+
+                        @* <a asp-action="UserChange" asp-route-id="@dvc?.UserDevicesId" class="btn btn-warning">
+                            <i class="fa fa-rotate"></i>
+                            Change User
+                        </a> *@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a asp-action="Delete" asp-route-id="@dvc?.UserDevicesId" class="btn btn-danger">
+                            <a onclick="deleteUserDevices(event, @dvc?.UserDevicesId)" class="btn btn-danger">
                                 <i class="fa fa-trash"></i>
                                 Delete
                             </a>
+
+                            @* <a asp-action="Delete" asp-route-id="@dvc?.UserDevicesId" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                    Delete
+                               </a> *@
+
                         </div>
                     </td>
                 </tr>
@@ -51,3 +63,43 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript">
+    
+    function deleteUserDevices(event, id) {
+        event.preventDefault();
+
+        if (confirm('Are you sure you want to render this device inactive, indicating that it is not in use by anyone?')) {
+
+            $.ajax({
+                type: 'Get',
+                url: "https://localhost:7107/editor/userdevices/delete/" + id,
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+
+    }
+
+    function getOneUserDevices(event, id) {
+        event.preventDefault();
+
+        $.ajax({
+            type: 'Get',
+            url: "https://localhost:7107/editor/userdevices/userchange/" + id,
+            success: function (result) {
+                window.location.href = "https://localhost:7107/editor/userdevices/userchange/" + id;
+            },
+            error: function (error) {
+
+                console.error(error);
+            }
+        });
+
+    }
+    
+</script>

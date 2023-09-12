@@ -1,4 +1,102 @@
 ﻿@model UserDevices
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+
+<div class="text-center">
+    <div class="display-6">User Change</div>
+</div>
+
+<form>
+
+    <input type="hidden" value="@Model.UserDevicesId" id="UserDevicesId" name="UserDevicesId">
+    <input type="hidden" value="@Model.DeviceId" id="DeviceId" name="DeviceId">
+
+    <div class="form-group my-3">
+        <label for="AppUserId">User</label>
+        <select id="AppUserId" name="AppUserId" class="form-control">
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <a onclick="changeUser(event)" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+                Save
+            </a>
+            <a onclick="getUserDevices(event)" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                User Devices
+            </a>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    
+    function changeUser(event) {
+        event.preventDefault();
+
+        debugger;
+        var formData = {
+            UserDevicesId: $('#UserDevicesId').val(),
+            DeviceId: $('#DeviceId').val(),
+            AppUserId: $('#AppUserId').val()
+        };
+
+        // POST isteği gönder
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:7107/Editor/UserDevices/UserChange',
+            headers: { "RequestVerificationToken": "@GetAntiXsrfRequestToken()" },
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (result) {
+                console.log("basarili");
+                window.location.href = "https://localhost:7107/editor/userdevices/index"
+            },
+            error: function (error) {
+
+                console.log(error);
+            }
+        });
+    }
+
+    function getUserDevices(event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: 'https://localhost:7107/editor/userdevices/index',
+            type: 'GET',
+            success: function (result) {
+
+                window.location.href = "https://localhost:7107/editor/userdevices/index"
+            },
+            error: function (error) {
+
+                console.log(error);
+            }
+        });
+    }
+    
+</script>
+
+
+
+
+
+@* @model UserDevices
 
 <div class="text-center">
     <div class="display-6">User Change</div>
@@ -10,7 +108,6 @@
 
     <input type="hidden" asp-for="UserDevicesId">
     <input type="hidden" asp-for="DeviceId">
-
 
     <div class="form-group my-3">
         <label asp-for="AppUserId">User</label>
@@ -32,4 +129,4 @@
             </a>
         </div>
     </div>
-</form>
+</form> *@
