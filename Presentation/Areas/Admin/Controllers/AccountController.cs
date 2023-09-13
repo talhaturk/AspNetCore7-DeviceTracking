@@ -40,7 +40,7 @@ namespace Presentation.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] RegisterDto model, IFormFile file)
+        public async Task<IActionResult> Create([FromForm]RegisterDto model, IFormFile file)
         {
             if(ModelState.IsValid)
             {
@@ -89,16 +89,17 @@ namespace Presentation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update([FromRoute(Name = "id")] int id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             RegisterDto model = new RegisterDto()
             {
-                UserName = user.UserName,
-                Name = user.Name,
-                Surname = user.Surname,
-                Email = user.Email,
-                ImageUrl = user.ImageUrl,
+                UserName = user?.UserName,
+                Name = user?.Name,
+                Surname = user?.Surname,
+                Email = user?.Email,
+                ImageUrl = user?.ImageUrl,
             };
             ViewBag.Roles = GetRolesSelectList();
             return View(model);
@@ -155,6 +156,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());

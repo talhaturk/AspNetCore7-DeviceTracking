@@ -6,10 +6,16 @@
     </div>
 
     <div class="d-flex justify-content-end my-3">
-        <a class="btn btn-outline-success" asp-action="Create">
+        
+        <a class="btn btn-outline-success" onclick="getCreateAccount(event)">
             <i class="fa-solid fa-user-plus"></i>
             Create User
         </a>
+        
+        @* <a class="btn btn-outline-success" asp-action="Create">
+            <i class="fa-solid fa-user-plus"></i>
+            Create User
+        </a> *@
     </div>
 
     <div class="row">
@@ -20,3 +26,22 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+
+    function getCreateAccount(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/account/create',
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/account/create';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>

@@ -13,7 +13,7 @@
     <div class="display-6">Create</div>
 </div>
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form>
     <div class="text-danger" asp-validation-summary="All"></div>
 
     <div class="form-group my-3">
@@ -56,7 +56,6 @@
     function createUserDevices(event) {
         event.preventDefault();
 
-        debugger;
         var formData = {
             DeviceId: $('#DeviceId').val(),
             AppUserId: $('#AppUserId').val()

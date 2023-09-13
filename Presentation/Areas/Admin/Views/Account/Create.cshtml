@@ -1,4 +1,118 @@
-﻿@model RegisterDto
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+<div class="text-center">
+    <div class="display-6">Create</div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+
+    <div class="form-group my-3">
+        <label>Username<span class="text-danger"><strong>*</strong></span></label>
+        <input id="UserName" name="UserName" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Name</label>
+        <input id="Name" name="Name" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Surname</label>
+        <input id="Surname" name="Surname" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>ImageUrl<span class="text-danger"><strong>*</strong></span></label>
+        <input id="File" name="File" type="file" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Email<span class="text-danger"><strong>*</strong></span></label>
+        <input id="Email" name="Email" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Password<span class="text-danger"><strong>*</strong></span></label>
+        <input id="Password" name="Password" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Role</label>
+        <select id="Role" name="Role" class="form-control">
+            @foreach (var role in ViewBag.Roles)
+            {
+                <option value="@role.Value">@role.Text</option>
+            }
+        </select>
+    </div>
+
+    <div id="error-message" class="text-danger my-3 d-flex justify-content-center"></div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button onclick="createAccount(event)" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a onclick="getAccounts(event)" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Accounts
+            </a>
+        </div>
+    </div>
+
+</form>
+
+
+<script type="text/javascript">
+
+    function createAccount(event) {
+        event.preventDefault();
+
+        if ($('#UserName').val() == "" || $('#Password').val() == "" || $('#Email').val() == "" || $('#File').val() == "") {
+            $("#error-message").text("Error: Please fill in the lines marked (*).");
+        } else {
+            const formData = new FormData(document.forms.item(0));
+            let file = $('#File').prop("files")[0];
+            formData.append('file', file);
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://localhost:7107/admin/account/create',
+                headers: { "RequestVerificationToken": "@GetAntiXsrfRequestToken()" },
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    console.log("basarili");
+                    window.location.href = "https://localhost:7107/admin/account/index"
+                },
+                error: function (error) {
+
+                    console.log(error);
+                }
+            });
+        }
+
+    }
+
+</script>
+
+
+
+
+
+@* @model RegisterDto
 
 <div class="text-center">
     <div class="display-6">Create</div>
@@ -54,8 +168,8 @@
         <label asp-for="Role"></label>
         <select asp-for="Role"
                 class="form-control"
-                asp-items="@ViewBag.Roles"
-                asp-for="Role"></select>
+                asp-items="@ViewBag.Roles">
+        </select>
     </div>
  
-</form>
+</form> *@
