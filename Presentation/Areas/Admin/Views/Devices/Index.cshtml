@@ -47,3 +47,95 @@
         </tbody>
     </table>
 </div>
+
+
+<script type="text/javascript">
+
+    function getUpdateDevice(event, id) {
+
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/devices/update/' + id,
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/devices/update/' + id;
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+
+    }
+
+    function deleteDevice(event, id) {
+
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:7107/admin/devices/delete/' + id,
+            success: function () {
+
+                window.location.href = 'https://localhost:7107/admin/devices/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+
+    }
+
+</script>
+
+
+
+
+@* @model IEnumerable<Device>
+
+<div class="text-center">
+    <div class="display-6 mt-3">Devices</div>
+
+    <div class="d-flex justify-content-end my-3">
+        <a class="btn btn-outline-success" asp-action="Create">
+            <i class="fa fa-plus"></i>
+            Create
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Device Name</th>
+                <th>Image Url</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Device dvc in Model)
+            {
+                <tr>
+                    <td>@dvc?.DeviceId</td>
+                    <td>
+                        <img class="border border-light img-thumbnail rounded" src="@dvc?.ImageUrl" alt="@dvc?.DeviceName" width="50">
+                    </td>
+                    <td>@dvc?.DeviceName</td>
+                    <td>@dvc?.ImageUrl</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Update" asp-route-id="@dvc?.DeviceId" class="btn btn-warning">
+                                <i class="fa fa-edit"></i>
+                                Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@dvc?.DeviceId" class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> *@

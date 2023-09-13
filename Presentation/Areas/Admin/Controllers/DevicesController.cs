@@ -1,6 +1,7 @@
 ﻿using Entities.Dtos;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace Presentation.Areas.Admin.Controllers
             _serviceManager = serviceManager;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Device> devices = _serviceManager.DeviceService.GetAllDevices(false)
@@ -27,6 +29,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(devices);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +61,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             DeviceDtoForUpdate device = _serviceManager.DeviceService.GetOneDeviceForUpdate(id, false);

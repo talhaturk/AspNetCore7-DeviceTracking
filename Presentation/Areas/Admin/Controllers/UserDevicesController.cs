@@ -21,6 +21,7 @@ namespace Presentation.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var userDevices = _serviceManager.UserDevicesService.GetAllDevices(false)
@@ -28,6 +29,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(userDevices);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.Users = GetUsersSelectList();
@@ -37,7 +39,7 @@ namespace Presentation.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] UserDevices userDevices)
+        public IActionResult Create([FromBody] UserDevices userDevices)
         {
             if (ModelState.IsValid)
             {
@@ -48,6 +50,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult UserChange([FromRoute(Name = "id")] int id)
         {
             ViewBag.Users = GetUsersSelectList();
@@ -57,7 +60,7 @@ namespace Presentation.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UserChange(UserDevices userDevices)
+        public IActionResult UserChange([FromBody]UserDevices userDevices)
         {
             if (ModelState.IsValid)
             {

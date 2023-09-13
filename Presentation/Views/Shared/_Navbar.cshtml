@@ -23,6 +23,7 @@
                         $.ajax({
                             type: 'GET',
                             url: 'https://localhost:7107/home/index',
+                            cache: false,
                             success: function () {
 
                                 window.location.href = 'https://localhost:7107/home/index';
@@ -38,6 +39,7 @@
                         $.ajax({
                             type: 'GET',
                             url: 'https://localhost:7107/home/device',
+                            cache: false,
                             success: function () {
                                 
                                 window.location.href = 'https://localhost:7107/home/device';

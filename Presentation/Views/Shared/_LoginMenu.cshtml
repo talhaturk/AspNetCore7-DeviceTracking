@@ -51,6 +51,7 @@
         $.ajax({
             type: 'GET',
             url: 'https://localhost:7107/admin/dashboard/index',
+            cache: false,
             success: function () {
 
                 window.location.href = 'https://localhost:7107/admin/dashboard/index';
@@ -66,6 +67,7 @@
         $.ajax({
             type: 'GET',
             url: 'https://localhost:7107/editor/dashboard/index',
+            cache: false,
             success: function () {
 
                 window.location.href = 'https://localhost:7107/editor/dashboard/index';
@@ -81,8 +83,9 @@
         $.ajax({
             type: 'GET',
             url: 'https://localhost:7107/account/logout',
+            cache: false,
             success: function () {
-
+                
             },
             error: function (error) {
                 console.error(error);

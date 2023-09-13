@@ -1,5 +1,110 @@
 ﻿@model DeviceDtoForUpdate
 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+<div class="text-center">
+    <div class="display-6">Update</div>
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <input type="hidden" id="DeviceId" name="DeviceId" value="@Model?.DeviceId">
+
+
+    <div class="form-group my-3">
+        <label>DeviceName<span class="text-danger"><strong>*</strong></span></label>
+        <input value="@Model?.DeviceName" id="DeviceName" name="DeviceName" class="form-control" />
+    </div>
+
+
+    <div class="form-group my-3">
+        <img class="rounded shadow" width="150" src="@Model?.ImageUrl" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>ImageUrl<span class="text-danger"><strong>*</strong></span></label>
+        <input id="File" name="File" type="file" class="form-control" />
+    </div>
+
+    <div id="error-message" class="text-danger my-3 d-flex justify-content-center"></div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button onclick="updateDevice(event)" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+                Update
+            </button>
+            <a onclick="getDevices(event)" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Devices
+            </a>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    function updateDevice(event) {
+        event.preventDefault();
+
+        if ($('#DeviceName').val() == "" || $('#File').val() == "") {
+            $("#error-message").text("Error: Please fill in the lines marked (*).");
+        } else {
+            const formData = new FormData(document.forms.item(0));
+            let file = $('#File').prop("files")[0];
+            formData.append('file', file);
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://localhost:7107/admin/devices/update',
+                headers: { "RequestVerificationToken": "@GetAntiXsrfRequestToken()" },
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    $("#error-message").text("");
+                    window.location.href = 'https://localhost:7107/admin/devices/index';
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+    }
+    
+
+    function getDevices(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:7107/admin/devices/index',
+            success: function () {
+                window.location.href = 'https://localhost:7107/admin/devices/index';
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>
+
+
+
+
+
+
+@* @model DeviceDtoForUpdate
+
 <div class="text-center">
     <div class="display-6">Update</div>
 </div>
@@ -38,4 +143,4 @@
             </a>
         </div>
     </div>
-</form>
+</form> *@
